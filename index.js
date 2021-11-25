@@ -5,7 +5,7 @@
 // 4. rerender the app based on the new state
 
 
-const todoState = {
+const State = {
     todos : {
         name: 'potato' ,
         condition : true
@@ -59,7 +59,7 @@ function todoSection(){
 
     const textPElement = document.createElement('p')
     textPElement.setAttribute('class' , 'text')
-    textPElement.textContent = 'Go Shoping'
+    textPElement.textContent = State.todos.name
 
     textsectionDiv.append(textPElement)
 
