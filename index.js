@@ -24,7 +24,9 @@ function todoList(){
     const addTodo = document.querySelector('.text-input')
    
     const todobuttoEL = document.querySelector('.submit-button')
-    todobuttoEL.addEventListener('click')
+    todobuttoEL.addEventListener('click', function(){
+        todoSection()
+    })
      
     todoForm.append(addTodo, todobuttoEL )
     todoFormSection.append(todoForm)
@@ -34,7 +36,7 @@ function todoList(){
 // todoList(todoState)
 
 
-function todoSection(todoState){
+function todoSection(){
     const todoListSection = document.querySelector('.todo-section')
     const todoListUl = document.querySelector('.todo-list')
 
@@ -54,9 +56,10 @@ function todoSection(todoState){
 
     const textsectionDiv = document.createElement('div')
     textsectionDiv.setAttribute('class' , 'text-section')
+
     const textPElement = document.createElement('p')
-    todoinputEl.setAttribute('class' , 'text')
-    todoinputEl.textContent('Go Shoping')
+    textPElement.setAttribute('class' , 'text')
+    textPElement.textContent = 'Go Shoping'
 
     textsectionDiv.append(textPElement)
 
@@ -65,16 +68,14 @@ function todoSection(todoState){
 
     const buttonEditElement = document.createElement("button")
     buttonEditElement.setAttribute('class', 'edit')
-    buttonEditElement.textContent('Edit')
+    buttonEditElement.textContent ='Edit'
 
     const buttonDeleteElement = document.createElement("button")
     buttonDeleteElement.setAttribute('class', 'delete')
-    buttonEditElement.textContent('Delete')
+    buttonDeleteElement.textContent ='Delete'
 
     buttonDivElement.append(buttonEditElement, buttonDeleteElement)
-
     todoLiEL.append(todoDivEl,textsectionDiv, buttonDivElement)
-   
     todoListUl.append(todoLiEL)
 }
 
@@ -87,4 +88,6 @@ function todoCompledet(todoState){
     todoList()
 }
 
+
+todoSection()
 
