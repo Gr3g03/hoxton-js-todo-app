@@ -5,89 +5,173 @@
 // 4. rerender the app based on the new state
 
 
-const State = {
-    todos : {
+const todoCompletedULSection = document.querySelector('.completed-list')
+const showCompletedCheckbox = document.querySelector('.show-completed-checkbox')
+const addTodoForm = document.querySelector('.add-item')
+const todoList = document.querySelector('.todo-list')
+
+const state = {
+    todos : [
+        {
         name: 'potato' ,
         condition : true
+    },
+    {
+        name: 'milk' ,
+        condition : false
+    },
+    {
+        name: 'tomato' ,
+        condition : false
+    },
+    {
+        name: 'potato' ,
+        condition : true
+    }
+  ],
+}
+
+
+function addTodo(todo){
+   state.todos.push(todo)
+}
+
+function togleTodos(todo){
+    todo.completed = !todo.completed
+}
+
+function deleteTodo(text){
+   state.todos =  state.todos.filter(function(todo){
+        return todo.name !== text
+    }) 
+}
+
+function completedTodos(){
+    return  state.todos.filter(function(todo){
+    return todo.condition
+  })
+  }
+
+  function incompletedTodos(){
+    return state.todos.filter(function (todo){
+    return !todo.condition
+ })
+ }
+
+
+// function todoList(){
+
+// }
+
+
+function todoCompletedSection (){
+    const incompletedTodo = incompletedTodos()
+    // todoList.innerHTML = ``
+    todoCompletedULSection.innerHTML =``
+
+    for(const todo of incompletedTodo){
+        const todoLiEL = document.createElement('li')
+        todoLiEL.setAttribute('class' , 'todo')
+        const todoDivEl = document.createElement('div')
+        todoDivEl.setAttribute('class' , 'completed-section')
+    
+        const todoinputEl = document.createElement('input')
+        todoinputEl.setAttribute('class' , 'completed-checkbox')
+        todoinputEl.setAttribute('type' , 'checkbox')
+
+        todoDivEl.append(todoinputEl)
+    
+    
+        const textsectionDiv = document.createElement('div')
+        textsectionDiv.setAttribute('class' , 'text-section')
+    
+        const textPElement = document.createElement('p')
+        textPElement.setAttribute('class' , 'text')
+        textPElement.textContent = todo.name
+    
+        textsectionDiv.append(textPElement)
+    
+        const buttonDivElement = document.createElement('div')
+        buttonDivElement.setAttribute('class', 'button-section')
+    
+        const buttonEditElement = document.createElement("button")
+        buttonEditElement.setAttribute('class', 'edit')
+        buttonEditElement.textContent ='Edit'
+    
+        const buttonDeleteElement = document.createElement("button")
+        buttonDeleteElement.setAttribute('class', 'delete')
+        buttonDeleteElement.textContent ='Delete'
+    
+        buttonDivElement.append(buttonEditElement, buttonDeleteElement)
+        todoLiEL.append(todoDivEl,textsectionDiv, buttonDivElement)
+        // todoListUl.append(todoLiEL)
+        todoinputEl.checked = todo.condition
+        todoinputEl.addEventListener('click', function () {
+            togleTodos(todo)
+            render()
+          })
+          todoCompletedULSection.append(todoLiEL)
+    }
+}
+
+function todoIcnompletedSection (){
+    const incompletedTodo = incompletedTodos()
+    todoList.innerHTML = ``
+    // todoCompletedULSection.innerHTML =``
+
+    for(const todo of incompletedTodo){
+        const todoLiEL = document.createElement('li')
+        todoLiEL.setAttribute('class' , 'todo')
+        const todoDivEl = document.createElement('div')
+        todoDivEl.setAttribute('class' , 'completed-section')
+    
+        const todoinputEl = document.createElement('input')
+        todoinputEl.setAttribute('class' , 'completed-checkbox')
+        todoinputEl.setAttribute('type' , 'checkbox')
+
+        todoDivEl.append(todoinputEl)
+    
+    
+        const textsectionDiv = document.createElement('div')
+        textsectionDiv.setAttribute('class' , 'text-section')
+    
+        const textPElement = document.createElement('p')
+        textPElement.setAttribute('class' , 'text')
+        textPElement.textContent = todo.name
+    
+        textsectionDiv.append(textPElement)
+    
+        const buttonDivElement = document.createElement('div')
+        buttonDivElement.setAttribute('class', 'button-section')
+    
+        const buttonEditElement = document.createElement("button")
+        buttonEditElement.setAttribute('class', 'edit')
+        buttonEditElement.textContent ='Edit'
+    
+        const buttonDeleteElement = document.createElement("button")
+        buttonDeleteElement.setAttribute('class', 'delete')
+        buttonDeleteElement.textContent ='Delete'
+    
+        buttonDivElement.append(buttonEditElement, buttonDeleteElement)
+        todoLiEL.append(todoDivEl,textsectionDiv, buttonDivElement)
+        // todoListUl.append(todoLiEL)
+        todoinputEl.checked = todo.condition
+        todoinputEl.addEventListener('click', function () {
+            togleTodos(todo)
+            render()
+          })
+          todoCompletedULSection.append(todoLiEL)
     }
 
 }
 
-function todoList(){
-    const todoFormSection = document.querySelector('.add-todo-section')
-
-    const todoForm = document.querySelector('.add-item')
-    todoForm.addEventListener('submit', function(event){
-        event.preventDefault
-    })
-
-    const addTodo = document.querySelector('.text-input')
-   
-    const todobuttoEL = document.querySelector('.submit-button')
-    todobuttoEL.addEventListener('click', function(){
-        todoSection()
-    })
-     
-    todoForm.append(addTodo, todobuttoEL )
-    todoFormSection.append(todoForm)
-
-
-}
-// todoList(todoState)
-
-
-function todoSection(){
-    const todoListSection = document.querySelector('.todo-section')
-    const todoListUl = document.querySelector('.todo-list')
-
-    todoListSection.append(todoListUl)
-
-    const todoLiEL = document.createElement('li')
-    todoLiEL.setAttribute('class' , 'todo')
-
-    const todoDivEl = document.createElement('div')
-    todoDivEl.setAttribute('class' , 'completed-section')
-    const todoinputEl = document.createElement('input')
-    todoinputEl.setAttribute('class' , 'completed-checkbox')
-    todoinputEl.setAttribute('type' , 'checkbox')
-
-    todoDivEl.append(todoinputEl)
-
-
-    const textsectionDiv = document.createElement('div')
-    textsectionDiv.setAttribute('class' , 'text-section')
-
-    const textPElement = document.createElement('p')
-    textPElement.setAttribute('class' , 'text')
-    textPElement.textContent = State.todos.name
-
-    textsectionDiv.append(textPElement)
-
-    const buttonDivElement = document.createElement('div')
-    buttonDivElement.setAttribute('class', 'button-section')
-
-    const buttonEditElement = document.createElement("button")
-    buttonEditElement.setAttribute('class', 'edit')
-    buttonEditElement.textContent ='Edit'
-
-    const buttonDeleteElement = document.createElement("button")
-    buttonDeleteElement.setAttribute('class', 'delete')
-    buttonDeleteElement.textContent ='Delete'
-
-    buttonDivElement.append(buttonEditElement, buttonDeleteElement)
-    todoLiEL.append(todoDivEl,textsectionDiv, buttonDivElement)
-    todoListUl.append(todoLiEL)
+function render(){
+    todoIcnompletedSection()
+    todoCompletedSection()
 }
 
-
-function todoCompledet(todoState){
-    const todoCompletedSection = document.querySelector('.completed-section')
-    const todoCompletedULSection = document.querySelector('.completed-list')
-    todoCompletedSection.append(todoCompletedULSection)
-
-    todoList()
-}
+render()
 
 
-todoSection()
+
 
