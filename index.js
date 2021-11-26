@@ -25,7 +25,7 @@ const state = {
         condition : false
     },
     {
-        name: 'potato' ,
+        name: 'sugar' ,
         condition : true
     }
   ],
@@ -37,7 +37,7 @@ function addTodo(todo){
 }
 
 function togleTodos(todo){
-    todo.completed = !todo.completed
+    todo.condition = !todo.condition
 }
 
 function deleteTodo(text){
@@ -65,11 +65,11 @@ function completedTodos(){
 
 
 function todoCompletedSection (){
-    const incompletedTodo = incompletedTodos()
+    const completedTodosSection = completedTodos()
     // todoList.innerHTML = ``
     todoCompletedULSection.innerHTML =``
 
-    for(const todo of incompletedTodo){
+    for(const todo of completedTodosSection){
         const todoLiEL = document.createElement('li')
         todoLiEL.setAttribute('class' , 'todo')
         const todoDivEl = document.createElement('div')
@@ -112,14 +112,15 @@ function todoCompletedSection (){
           })
           todoCompletedULSection.append(todoLiEL)
     }
+
 }
 
 function todoIcnompletedSection (){
-    const incompletedTodo = incompletedTodos()
+    const cincompletedTodosSection = incompletedTodos()
     todoList.innerHTML = ``
     // todoCompletedULSection.innerHTML =``
 
-    for(const todo of incompletedTodo){
+    for(const todo of cincompletedTodosSection){
         const todoLiEL = document.createElement('li')
         todoLiEL.setAttribute('class' , 'todo')
         const todoDivEl = document.createElement('div')
@@ -160,7 +161,7 @@ function todoIcnompletedSection (){
             togleTodos(todo)
             render()
           })
-          todoCompletedULSection.append(todoLiEL)
+          todoList.append(todoLiEL)
     }
 
 }
