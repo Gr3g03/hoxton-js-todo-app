@@ -6,9 +6,10 @@
 
 
 const todoCompletedULSection = document.querySelector('.completed-list')
-const showCompletedCheckbox = document.querySelector('.show-completed-checkbox')
 const addTodoForm = document.querySelector('.add-item')
 const todoList = document.querySelector('.todo-list')
+const  checkboxCompletedSection = document.querySelector('.completed-section')
+ 
 
 const state = {
     todos : [
@@ -29,8 +30,15 @@ const state = {
         condition : true
     }
   ],
+  showCompleted: true
 }
 
+
+const showCompletedCheckbox = document.querySelector('.show-completed-checkbox')
+showCompletedCheckbox.addEventListener('click', function(){
+    state.showCompleted = showCompletedCheckbox.checked
+    render()
+})
 
 function addTodo(todo){
    state.todos.push(todo)
@@ -71,7 +79,7 @@ function todoCompletedSection (){
 
     for(const todo of completedTodosSection){
         const todoLiEL = document.createElement('li')
-        todoLiEL.setAttribute('class' , 'todo')
+        todoLiEL.setAttribute('class' , 'todo completed')
         const todoDivEl = document.createElement('div')
         todoDivEl.setAttribute('class' , 'completed-section')
     
@@ -112,6 +120,7 @@ function todoCompletedSection (){
           })
           todoCompletedULSection.append(todoLiEL)
     }
+
 
 }
 
@@ -166,9 +175,35 @@ function todoIcnompletedSection (){
 
 }
 
+
+function userInputTodo(todo){
+    const todoForm = querySelector('.add-item')
+    todoForm.addEventListener('submit', function (event) {
+        event.preventDefault()
+        addTodo(todo)
+    } )
+
+    const todoUserInput = querySelector('.text-input')
+
+    // const buttonElement = querySelector('.submit-button')
+    // buttonElement.addEventListener('click' , function(){
+    //    
+    // })
+
+    todoForm.append(todoUserInput, buttonElement)
+
+    render()
+}
+
 function render(){
     todoIcnompletedSection()
     todoCompletedSection()
+
+    if(state.showCompleted){
+        checkboxCompletedSection.style.display = 'block'
+    }else {
+        checkboxCompletedSection.style.display = 'none'
+}
 }
 
 render()
