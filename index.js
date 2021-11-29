@@ -177,20 +177,27 @@ function todoIcnompletedSection (){
 
 
 function userInputTodo(todo){
-    const todoForm = querySelector('.add-item')
-    todoForm.addEventListener('submit', function (event) {
+    addTodoForm.addEventListener('submit', function (event) {
         event.preventDefault()
+        // addTodo(todo)
+
+        const todo = {
+            name: addTodo.name,
+            condition: false
+        }
         addTodo(todo)
+        render(todo)
+
+
     } )
 
-    const todoUserInput = querySelector('.text-input')
+    const todoUserInput = document.querySelector('.text-input')
+    const buttonElement = document.querySelector('.submit-button')
+    buttonElement.addEventListener('click' , function(){
+       
+    })
 
-    // const buttonElement = querySelector('.submit-button')
-    // buttonElement.addEventListener('click' , function(){
-    //    
-    // })
-
-    todoForm.append(todoUserInput, buttonElement)
+    addTodoForm.append(todoUserInput, buttonElement)
 
     render()
 }
@@ -204,9 +211,11 @@ function render(){
     }else {
         checkboxCompletedSection.style.display = 'none'
 }
+
 }
 
 render()
+userInputTodo()
 
 
 
