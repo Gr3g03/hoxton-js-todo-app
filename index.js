@@ -109,6 +109,10 @@ function todoCompletedSection (){
         const buttonDeleteElement = document.createElement("button")
         buttonDeleteElement.setAttribute('class', 'delete')
         buttonDeleteElement.textContent ='Delete'
+        buttonDeleteElement.addEventListener('click' , function(){
+            deleteTodo(todo.name) 
+            render()
+        })
     
         buttonDivElement.append(buttonEditElement, buttonDeleteElement)
         todoLiEL.append(todoDivEl,textsectionDiv, buttonDivElement)
@@ -153,6 +157,7 @@ function todoIcnompletedSection (){
     
         const buttonDivElement = document.createElement('div')
         buttonDivElement.setAttribute('class', 'button-section')
+
     
         const buttonEditElement = document.createElement("button")
         buttonEditElement.setAttribute('class', 'edit')
@@ -161,6 +166,10 @@ function todoIcnompletedSection (){
         const buttonDeleteElement = document.createElement("button")
         buttonDeleteElement.setAttribute('class', 'delete')
         buttonDeleteElement.textContent ='Delete'
+        buttonDeleteElement.addEventListener('click' , function(){
+            deleteTodo(todo.name) 
+            render()
+        })
     
         buttonDivElement.append(buttonEditElement, buttonDeleteElement)
         todoLiEL.append(todoDivEl,textsectionDiv, buttonDivElement)
@@ -176,6 +185,7 @@ function todoIcnompletedSection (){
 }
 
 
+
 function userInputTodo(){
     addTodoForm.addEventListener('submit', function (event) {
         event.preventDefault()
@@ -189,20 +199,21 @@ function userInputTodo(){
             condition: false
         }
         addTodo(todo)
+        addTodoForm.reset()
         render(todo)
 
 
     } )
 
-    const todoUserInput = document.querySelector('.text-input')
-    const buttonElement = document.querySelector('.submit-button')
-    buttonElement.addEventListener('click' , function(){
+    // // const todoUserInput = document.querySelector('.text-input')
+    // // const buttonElement = document.querySelector('.submit-button')
+    // buttonElement.addEventListener('click' , function(){
        
-    })
+    // })
 
-    addTodoForm.append(todoUserInput, buttonElement)
+    // addTodoForm.append(todoUserInput, buttonElement)
 
-    render()
+    // render()
 }
 
 function render(){
