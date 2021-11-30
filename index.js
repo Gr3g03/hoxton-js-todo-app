@@ -176,13 +176,16 @@ function todoIcnompletedSection (){
 }
 
 
-function userInputTodo(todo){
+function userInputTodo(){
     addTodoForm.addEventListener('submit', function (event) {
         event.preventDefault()
         // addTodo(todo)
 
+        const userAddTodos= document.querySelector('.text-input')
+
+
         const todo = {
-            name: addTodo.name,
+            name: userAddTodos.value,
             condition: false
         }
         addTodo(todo)
