@@ -44,6 +44,13 @@ function addTodo(todo){
    state.todos.push(todo)
 }
 
+
+function editTodo (todo){
+    const newTitle = prompt(`Insert new title`)
+    todo.name = newTitle
+    render()
+}
+
 function togleTodos(todo){
     todo.condition = !todo.condition
 }
@@ -105,6 +112,10 @@ function todoCompletedSection (){
         const buttonEditElement = document.createElement("button")
         buttonEditElement.setAttribute('class', 'edit')
         buttonEditElement.textContent ='Edit'
+        buttonEditElement.addEventListener("click", function(){
+            editTodo (todo)
+            render()
+        })
     
         const buttonDeleteElement = document.createElement("button")
         buttonDeleteElement.setAttribute('class', 'delete')
@@ -162,6 +173,10 @@ function todoIcnompletedSection (){
         const buttonEditElement = document.createElement("button")
         buttonEditElement.setAttribute('class', 'edit')
         buttonEditElement.textContent ='Edit'
+        buttonEditElement.addEventListener("click", function(){
+            editTodo (todo)
+            render()
+        })
     
         const buttonDeleteElement = document.createElement("button")
         buttonDeleteElement.setAttribute('class', 'delete')
